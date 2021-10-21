@@ -1,0 +1,25 @@
+Improve growSunCover() for trees having/reaching maxTreeSize:
+    a) For loss of suns, moreDays = Player.moreDays - Player.myCompleteDays
+
+Accurate sun computation:
+    a) Track a day's total IncHeur planned sun -> Stop excessive seeding  [controls incHeur]
+    b) IncGrow should work with sunAhead -> computeSunAhead() in IncHeur  [increases incHeur chance]
+	
+	Post-effect: minProfit could be made 0 -> Choice of planting 0 length seed is avoided in SimpleHeur
+
+End game better tree completion:  [natural way to stop end game seeding]
+    a) Reserve day-by-day sun for completion of each tree
+    b) Allow seedIncHeur to use completion reserve of a tree only if greater "suns" promised
+
+IncPartHeur
+    - Partial grow heuristics  [gain from some small trees in the end]
+
+Debate:
+    Is adding growCost[.] in growCost() a good idea?
+    After all, if you plan on growing a tree to full, u would need to spend that much sun "sooner or later" anyway.
+
+    Resolutions:
+        What would be a more accurate measure?
+            -> e.g., end game growing is not 0 growCost
+        Experimental resolution: enableGrowCost flag  (adds growCost[.] if true)
+            -> false gives better result

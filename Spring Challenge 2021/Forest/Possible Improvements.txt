@@ -1,0 +1,35 @@
+myCompleteSeedCost Fixes:
+    a) serr myCompleteSun and myCompleteSeedCost
+    b) account for seedPlan.size() while choosing seeding option from allActions
+        [peek next option and compare.]
+        [next option might be another seed. then compare accordingly]
+
+Tree cover fixes:
+    -> a small size opp tree next to my full size tree WILL usually grow to full size. So, sunCover must be greater.
+
+End game better tree completion:
+    Plan A: [natural way to stop end game seeding]
+        a) Reserve day-by-day sun for completion of each tree
+        b) Allow seedIncHeur to use completion reserve of a tree only if greater "suns" promised
+                [should be exceedingly rare]
+    Plan B:
+        a) Integrate myCompleteDays with tree completion reserve
+
+Day correction for seeding: [use flag]
+    DEBATABLE!
+        a) -1 day for seed
+        b_ -2 days for seedNext
+
+Improve growSunCover() for trees having/reaching maxTreeSize:
+    a) For loss of suns, moreDays = Player.moreDays - Player.myCompleteDays
+        [Effect debatable with compactComplete]
+
+Wait implementer:
+    a) Wait before moves [BEGINNER]
+    b) Wait in-between moves [LEGEND!]
+        -> Check time complexity
+        -> Estimate opp growing trees within that time
+            (i) Defense mode, (ii) Offense mode, (iii) Balanced mode(??)
+    PRACTICAL SOLUTION:
+        a) Keep a small wait ahead coeff (2 or 3)
+        b) Increase shadowAheadCoeff accordingly
